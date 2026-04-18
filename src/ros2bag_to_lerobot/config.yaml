@@ -1,0 +1,68 @@
+settings:
+  bag_dir: "./bags/Wave" 
+  output_root: "./lerobot_dataset/wave"
+  dataset_name: "wave"
+  robot_type: "booster_t1"
+  target_freq: 50
+  use_videos: true
+  
+  # [NEW FLAG]
+  # true  = Each bag file is written to its own standalone LeRobot dataset folder.
+  # false = Bags are treated as a continuous sequence inside one merged dataset.
+  split_episodes_by_bag: true
+
+joint_groups:
+  neck: ["AAHead_yaw", "Head_pitch"]
+  left_arm: ["Left_Shoulder_Pitch", "Left_Shoulder_Roll", "Left_Elbow_Pitch", "Left_Elbow_Yaw", "Left_Wrist_Pitch", "Left_Wrist_Yaw", "Left_Hand_Roll"]
+  right_arm: ["Right_Shoulder_Pitch", "Right_Shoulder_Roll", "Right_Elbow_Pitch", "Right_Elbow_Yaw", "Right_Wrist_Pitch", "Right_Wrist_Yaw", "Right_Hand_Roll"]
+  waist: ["Waist"]
+  left_leg: ["Left_Hip_Pitch", "Left_Hip_Roll", "Left_Hip_Yaw", "Left_Knee_Pitch", "Left_Ankle_Pitch", "Left_Ankle_Roll"]
+  right_leg: ["Right_Hip_Pitch", "Right_Hip_Roll", "Right_Hip_Yaw", "Right_Knee_Pitch", "Right_Ankle_Pitch", "Right_Ankle_Roll"]
+
+msg_definitions:
+  # --- Standard ROS2 Definitions (Required for TF & Strings) ---
+  "std_msgs/msg/String": "string data"
+  "std_msgs/msg/Int32": "int32 data"
+  "std_msgs/msg/Float64MultiArray": "std_msgs/msg/MultiArrayLayout layout\nfloat64[] data"
+  "std_msgs/msg/Int64MultiArray":   "std_msgs/msg/MultiArrayLayout layout\nint64[] data"
+  "std_msgs/msg/MultiArrayLayout": "std_msgs/msg/MultiArrayDimension[] dim\nuint32 data_offset"
+  "std_msgs/msg/MultiArrayDimension": "string label\nuint32 size\nuint32 stride"
+  
+  # --- Geometry / TF ---
+  "geometry_msgs/msg/Vector3": "float64 x\nfloat64 y\nfloat64 z"
+  "geometry_msgs/msg/Quaternion": "float64 x\nfloat64 y\nfloat64 z\nfloat64 w"
+  "geometry_msgs/msg/Transform": "geometry_msgs/msg/Vector3 translation\ngeometry_msgs/msg/Quaternion rotation"
+  "geometry_msgs/msg/TransformStamped": "std_msgs/msg/Header header\nstring child_frame_id\ngeometry_msgs/msg/Transform transform"
+  "tf2_msgs/msg/TFMessage": "geometry_msgs/msg/TransformStamped[] transforms"
+
+  # --- Custom Booster Msgs (Kept just in case, though your metadata suggests standard types) ---
+  "booster_interface/msg/ImuState": "float32[3] rpy\nfloat32[3] gyro\nfloat32[3] acc"
+  "booster_interface/msg/MotorState": "int8 mode\nfloat32 q\nfloat32 dq\nfloat32 ddq\nfloat32 tau_est\nint8 temperature\nuint32 lost\nuint32[2] reserve"
+  "booster_interface/msg/LowState": "booster_interface/msg/ImuState imu_state\nbooster_interface/msg/MotorState[] motor_state_parallel\nbooster_interface/msg/MotorState[] motor_state_serial"
+  "booster_interface/msg/Odometer": "float32 x\nfloat32 y\nfloat32 theta"
+
+# Format: [Key, IsImage, Shape]
+# Format: [Key, IsImage, Shape]
+topic_map:
+  # --- Cameras (Compressed) ---
+  "/camera/camera/color/image_raw/compressed":       ["observation.images.color",      true, [720, 1280, 3]]
+  "/camera/camera/depth/image_rect_raw":            ["observation.images.depth",      true, [480, 848, 3]]
+  "/camera/camera/color/camera_info":                ["observation.camera.color_info", false, [9]]
+  "/camera/camera/depth/camera_info":                ["observation.camera.depth_info", false, [9]]
+  
+  # --- Robot State ---
+  "/real/joint_states":                  ["observation.state",             false, [29]]
+  "/ik/joint_states":                    ["action",                        false, [29]] # Explicit action source
+  "/real/joint_vel":                     ["observation.velocity",          false, [29]]
+  "/real/head_rpy":                      ["observation.head_rpy",          false, [3]]
+  "/real/imu":                           ["observation.imu",               false, [10]]
+  "/hand_states":                        ["observation.hand_states",        false, [2]]
+  
+  # --- Meta Data ---
+  "/episode_index":                      ["episode_index",                 false, [1]]
+  "/is_done":                            ["is_done",                       false, [1]]
+  "/task_label":                         ["task_label",                    false, [1]] 
+  
+  # --- TF (Optional) ---
+  # Only map this if you want to record the first transform in the TF tree as a vector
+  "/tf":                                 ["observation.tf_pose",           false, [7]]

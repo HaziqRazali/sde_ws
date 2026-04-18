@@ -1,0 +1,69 @@
+# Do not load this file into ROS param server.
+# We will parse and extract the contents using yaml instead.   
+
+# VR device - disable, metaquest3, htc_vive_pro2
+### this will be given as launch argument instead
+# vr_type: "metaquest3" 
+verbose: false
+poll_vr_frequency: 51.0
+
+# Settings for MetaQuest_3
+metaquest3:
+  # img_shape: [720, 1280]
+  img_shape: [480, 640]
+  display_fps: 30.0
+  display_mode: "immersive"     # Choose from ["immersive", "pass-through"] # "ego" not available
+  zmq: true
+  webrtc: false
+  webrtc_url: None
+  return_hand_rot_data: false
+  ee_starting_pos_error: 0.20   # Euclidean error between vr joystick positions vs. actual robot end effector positions
+
+# Camera stream info back into VR
+head_camera_stream: # uses ROS2 sensor_msgs/msg/Image
+  real: # if real robot is selected
+    enable: true
+    topic_name: "/camera/camera/color/image_raw/compressed" # compressed
+    encoding: "bgr8" # "rgb8"
+    height: 720
+    width: 1280
+    compressed: true
+  sim: # if sim robot is selected
+    enable: true
+    topic_name: "/sim/camera/color/image_raw"
+    encoding: "rgb8"
+    height: 480 # 480
+    width: 640 # 640
+    compressed: false
+
+# End effector type
+end_effector:
+  type: "gripper"   # Choices: ['disable', gripper', 'hand']
+  mode: "position"  # Choices: ['position', 'force']
+  min_pos: 0
+  max_pos: 800
+  frequency: 10     # in Hz
+
+# ROS 2 Configuration  
+ros2:
+  # Topics
+  topics:
+    target_poses: "/control_poses_target"    # topic to publish end-effector poses
+    num_target_poses: 3
+    type_target_poses: ['left_hand','right_hand','head'] # for developer to unpack
+
+  # TF Frames
+  frames:
+    robot_root: "Trunk"
+    left_target: "left_hand_target"
+    right_target: "right_hand_target"
+    left_hand_fname: "left_hand_link"   # robot left end_hand effector_link frame
+    right_hand_fname: "right_hand_link" # robot left hand end_effector_link frame
+    ee_frame_listen_rate: 10
+
+  # Config for end effector interactive marker gui on rviz
+  ee_interactive_marker: 
+    marker_server_name: "hand_controls"
+    initial_poses:
+      left_ee: [0.3883, 0.2322, -0.1878, -0.7071068, 0.0, 0.0, 0.7071068]
+      right_ee: [0.3883, -0.2322, -0.1878, 0.7071068, 0.0, -0.0, 0.7071068]

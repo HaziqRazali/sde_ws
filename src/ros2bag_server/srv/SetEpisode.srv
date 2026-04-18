@@ -1,0 +1,3 @@
+int16 episode_number
+---
+bool success

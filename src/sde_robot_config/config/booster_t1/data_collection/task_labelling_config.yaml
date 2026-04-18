@@ -1,0 +1,10 @@
+# Do not load this file into ROS param server.
+# We will parse and extract the contents using yaml instead.   
+
+# List of tasks available for selection
+task_instruction_lists:
+  - "Wave"
+  - "Salute"
+  - "Shake hands"
+  - "Place hands on head"
+

@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="t1_with_7dof_arms">
+  <joint name="AAHead_yaw" type="revolute">
+    <origin xyz="-0.0625 0. -0.30485" rpy="0. -1.5707963 0. "/>
+    <parent link="H1"/>
+    <child link="Trunk"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="7." velocity="100.000003"/>
+  </joint>
+  <joint name="Head_pitch" type="revolute">
+    <origin xyz="0.125 0. 0.54785" rpy="0. 0. 0."/>
+    <parent link="T1"/>
+    <child link="H1"/>
+    <axis xyz="0. 1. 0."/>
+    <limit lower="-99.9999945" upper="99.9999945" effort="7." velocity="50.0000015"/>
+  </joint>
+  <joint name="Left_Ankle_Pitch" type="revolute">
+    <origin xyz="0. -0. -0.28" rpy="0. 0. 0."/>
+    <parent link="Shank_Left"/>
+    <child link="Ankle_Cross_Left"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="50." velocity="274.5329282"/>
+  </joint>
+  <joint name="Left_Ankle_Roll" type="revolute">
+    <origin xyz="0.00025 0. -0.012 " rpy="0. 0. -1.5707964"/>
+    <parent link="Ankle_Cross_Left"/>
+    <child link="left_foot_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="50." velocity="274.5329282"/>
+  </joint>
+  <joint name="Left_Elbow_Pitch" type="revolute">
+    <origin xyz="0.00025 0.0605 0. " rpy="0. 0. 1.5707964"/>
+    <parent link="AL2"/>
+    <child link="AL3"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Elbow_Yaw" type="revolute">
+    <origin xyz="0.1471 -0. 0. " rpy="-1.5707964 -1.5707964 0. "/>
+    <parent link="AL3"/>
+    <child link="AL4"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Hand_Roll" type="revolute">
+    <origin xyz="0.00475 0.07 0.0015 " rpy="0. 0. 0."/>
+    <parent link="AL6"/>
+    <child link="left_hand_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="36." velocity="1."/>
+  </joint>
+  <joint name="Left_Hip_Pitch" type="revolute">
+    <origin xyz="0. 0.106 0. " rpy="1.5707964 0. 1.5707964"/>
+    <parent link="T1_Waist"/>
+    <child link="Hip_Pitch_Left"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="90." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Hip_Roll" type="revolute">
+    <origin xyz="0. 0. -0.02" rpy="0. 0. -1.5707964"/>
+    <parent link="Hip_Pitch_Left"/>
+    <child link="Hip_Roll_Left"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="60." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Hip_Yaw" type="revolute">
+    <origin xyz="0. 0. -0.081854" rpy="0. -1.5707963 0. "/>
+    <parent link="Hip_Roll_Left"/>
+    <child link="Hip_Yaw_Left"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="60." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Knee_Pitch" type="revolute">
+    <origin xyz="-0.134 0. 0.014" rpy="1.5707964 0. 1.5707964"/>
+    <parent link="Hip_Yaw_Left"/>
+    <child link="Shank_Left"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="130." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Shoulder_Pitch" type="revolute">
+    <origin xyz="-0.024 0.1063 0.005 " rpy="1.5716774 0. 1.5707964"/>
+    <parent link="Trunk"/>
+    <child link="AL1"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Shoulder_Roll" type="revolute">
+    <origin xyz="0.047 0. 0. " rpy="0. 0.0000954 -1.5707964"/>
+    <parent link="AL1"/>
+    <child link="AL2"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Left_Wrist_Pitch" type="revolute">
+    <origin xyz="0.00025 0.1048365 -0. " rpy="0. 1.5707964 0. "/>
+    <parent link="AL4"/>
+    <child link="AL5"/>
+    <axis xyz="0. 1. 0."/>
+    <limit lower="-99.9999945" upper="99.9999945" effort="36." velocity="102.3598791"/>
+  </joint>
+  <joint name="Left_Wrist_Yaw" type="revolute">
+    <origin xyz="-0. 0.0421635 -0. " rpy="0. 0. 0."/>
+    <parent link="AL5"/>
+    <child link="AL6"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-99.9999945" upper="99.9999945" effort="36." velocity="50.0000015"/>
+  </joint>
+  <joint name="Right_Ankle_Pitch" type="revolute">
+    <origin xyz="0. -0. -0.28" rpy="0. 0. 0."/>
+    <parent link="Shank_Right"/>
+    <child link="Ankle_Cross_Right"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="50." velocity="274.5329282"/>
+  </joint>
+  <joint name="Right_Ankle_Roll" type="revolute">
+    <origin xyz="-0.00025 0. -0.012 " rpy="0. 0. -1.5707964"/>
+    <parent link="Ankle_Cross_Right"/>
+    <child link="right_foot_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="50." velocity="274.5329282"/>
+  </joint>
+  <joint name="Right_Elbow_Pitch" type="revolute">
+    <origin xyz="0.00025 -0.0605 0. " rpy="0. 0. 1.5707964"/>
+    <parent link="AR2"/>
+    <child link="AR3"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Elbow_Yaw" type="revolute">
+    <origin xyz="-0.1471 -0. 0. " rpy="-1.5707964 -1.5707964 0. "/>
+    <parent link="AR3"/>
+    <child link="AR4"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Hand_Roll" type="revolute">
+    <origin xyz="0.00475 -0.07 0.0015 " rpy="0. 0. 0."/>
+    <parent link="AR6"/>
+    <child link="right_hand_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="36." velocity="1."/>
+  </joint>
+  <joint name="Right_Hip_Pitch" type="revolute">
+    <origin xyz="0. -0.106 0. " rpy="1.5707964 0. 1.5707964"/>
+    <parent link="T1_Waist"/>
+    <child link="Hip_Pitch_Right"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="90." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Hip_Roll" type="revolute">
+    <origin xyz="0. 0. -0.02" rpy="0. 0. -1.5707964"/>
+    <parent link="Hip_Pitch_Right"/>
+    <child link="Hip_Roll_Right"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="60." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Hip_Yaw" type="revolute">
+    <origin xyz="0. 0. -0.081854" rpy="0. -1.5707963 0. "/>
+    <parent link="Hip_Roll_Right"/>
+    <child link="Hip_Yaw_Right"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="60." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Knee_Pitch" type="revolute">
+    <origin xyz="-0.134 0. 0.014" rpy="1.5707964 0. 1.5707964"/>
+    <parent link="Hip_Yaw_Right"/>
+    <child link="Shank_Right"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="130." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Shoulder_Pitch" type="revolute">
+    <origin xyz="-0.024 -0.1063 0.005 " rpy="1.5716774 0. 1.5707964"/>
+    <parent link="Trunk"/>
+    <child link="AR1"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Shoulder_Roll" type="revolute">
+    <origin xyz="-0.047 0. 0. " rpy="0. 0.0000954 -1.5707964"/>
+    <parent link="AR1"/>
+    <child link="AR2"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="36." velocity="100.000003"/>
+  </joint>
+  <joint name="Right_Wrist_Pitch" type="revolute">
+    <origin xyz="0.00025 -0.105 0. " rpy="0. 1.5707963 0. "/>
+    <parent link="AR4"/>
+    <child link="AR5"/>
+    <axis xyz="0. 1. 0."/>
+    <limit lower="-99.9999945" upper="99.9999945" effort="36." velocity="102.3598791"/>
+  </joint>
+  <joint name="Right_Wrist_Yaw" type="revolute">
+    <origin xyz="-0. -0.042 -0. " rpy="0. 0. 0."/>
+    <parent link="AR5"/>
+    <child link="AR6"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-99.9999945" upper="99.9999945" effort="36." velocity="50.0000015"/>
+  </joint>
+  <joint name="T1_left_Link1_left_Link11" type="revolute">
+    <origin xyz="0.0419989 0.0000029 0.0030052" rpy="-0. -0. 0.3071898"/>
+    <parent link="T1_left_Link1"/>
+    <child link="T1_left_Link11"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_left_Link2_left_Link22" type="revolute">
+    <origin xyz="0.0420011 0.000003 0.0150047" rpy="-0. -0. 2.8344"/>
+    <parent link="T1_left_Link2"/>
+    <child link="T1_left_Link22"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_left_base_link_left_Link1" type="revolute">
+    <origin xyz="0.0360001 -0.0399931 -0.0190352" rpy="0.0008399 0.0002664 -0.3071863"/>
+    <parent link="T1_left_base_link"/>
+    <child link="T1_left_Link1"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_left_base_link_left_Link2" type="revolute">
+    <origin xyz="0.0359999 0.0400069 -0.0189647" rpy="0.0008399 -0.0002664 0.3071934"/>
+    <parent link="T1_left_base_link"/>
+    <child link="T1_left_Link2"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_right_Link1_right_Link11" type="revolute">
+    <origin xyz="0.0420011 -0.000003 0.0030047" rpy="-0. 0. 0.3071901"/>
+    <parent link="T1_right_Link1"/>
+    <child link="T1_right_Link11"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_right_Link2_right_Link22" type="revolute">
+    <origin xyz="0.0419989 -0.0000029 0.0150052" rpy="-0. 0. 2.8344002"/>
+    <parent link="T1_right_Link2"/>
+    <child link="T1_right_Link22"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="1." velocity="1."/>
+  </joint>
+  <joint name="T1_right_base_link_right_Link1" type="revolute">
+    <origin xyz="0.0359999 -0.0400069 -0.0189647" rpy="-0.0008399 -0.0002664 -0.3071934"/>
+    <parent link="T1_right_base_link"/>
+    <child link="T1_right_Link1"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="T1_right_base_link_right_Link2" type="revolute">
+    <origin xyz="0.0360001 0.0399931 -0.0190352" rpy="-0.0008399 0.0002664 0.3071863"/>
+    <parent link="T1_right_base_link"/>
+    <child link="T1_right_Link2"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="10." velocity="1."/>
+  </joint>
+  <joint name="Trunk_Waist" type="revolute">
+    <origin xyz="-0.3585 0. 0. " rpy="0. 0. 0."/>
+    <parent link="Trunk"/>
+    <child link="T1_Waist"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5707999" upper="1.5707999" effort="60." velocity="100.000003"/>
+  </joint>
+  <joint name="joint_T1-Camera_OmniVision_OV9782_Color" type="fixed">
+    <origin xyz="0.1351573 -0.0115 0.4144056" rpy="1.5707964 0. -1.5707964"/>
+    <parent link="T1"/>
+    <child link="Camera_OmniVision_OV9782_Color"/>
+  </joint>
+  <joint name="joint_T1-Camera_OmniVision_OV9782_Left" type="fixed">
+    <origin xyz="0.1351573 0.0475 0.4144056" rpy="1.5707964 0. -1.5707964"/>
+    <parent link="T1"/>
+    <child link="Camera_OmniVision_OV9782_Left"/>
+  </joint>
+  <joint name="joint_T1-Camera_OmniVision_OV9782_Right" type="fixed">
+    <origin xyz="0.1351573 -0.0475 0.4144056" rpy="1.5707964 0. -1.5707964"/>
+    <parent link="T1"/>
+    <child link="Camera_OmniVision_OV9782_Right"/>
+  </joint>
+  <joint name="joint_T1-Camera_Pseudo_Depth" type="fixed">
+    <origin xyz="0.1351573 0. 0.4144056" rpy="1.5707964 0. -1.5707964"/>
+    <parent link="T1"/>
+    <child link="Camera_Pseudo_Depth"/>
+  </joint>
+  <joint name="left_hand_link_left_base_link" type="fixed">
+    <origin xyz="-0.0060115 0.08 0.009999 " rpy="-0.0009766 0. 1.5707964"/>
+    <parent link="left_hand_link"/>
+    <child link="T1_left_base_link"/>
+  </joint>
+  <joint name="right_hand_link_right_base_link" type="fixed">
+    <origin xyz="-0.0060115 -0.084 0.009999 " rpy="0.0009766 0. -1.5707964"/>
+    <parent link="right_hand_link"/>
+    <child link="T1_right_base_link"/>
+  </joint>
+  <link name="AL1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.53"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL1_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AL2">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.16"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL2_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AL3">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.02"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL3_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL3_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL3_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AL4">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.2984"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL4_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL4_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL4_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AL5">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.42219"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0. 0.0001635 -0. " rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL5_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0. 0.0001635 -0. " rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL5_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0. 0.0001635 -0. " rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL5_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AL6">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.26532"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL6_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL6_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AL6_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.53"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR1_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0.0000954 -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR2">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.16"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR2_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR3">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.02"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR3_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR3_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR3_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR4">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.3599"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR4_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR4_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR4_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR5">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.43402"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR5_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR5_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR5_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="AR6">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.28215"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR6_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR6_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/AR6_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Ankle_Cross_Left">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.073"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Left_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Ankle_Cross_Right">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.073"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Right_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Ankle_Cross_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Camera_OmniVision_OV9782_Color"/>
+  <link name="Camera_OmniVision_OV9782_Color_OmniverseKitViewportCameraMesh">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Camera_OmniVision_OV9782_Color_OmniverseKitViewportCameraMesh_CameraMode.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="Camera_OmniVision_OV9782_Left"/>
+  <link name="Camera_OmniVision_OV9782_Left_OmniverseKitViewportCameraMesh">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Camera_OmniVision_OV9782_Left_OmniverseKitViewportCameraMesh_CameraMode.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="Camera_OmniVision_OV9782_Right"/>
+  <link name="Camera_OmniVision_OV9782_Right_OmniverseKitViewportCameraMesh">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Camera_OmniVision_OV9782_Right_OmniverseKitViewportCameraMesh_CameraMode.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="Camera_Pseudo_Depth"/>
+  <link name="Camera_Pseudo_Depth_OmniverseKitViewportCameraMesh">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Camera_Pseudo_Depth_OmniverseKitViewportCameraMesh_CameraMode.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="H1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.44391"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0625 0. -0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H1_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.0625 0. -0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0625 0. -0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Pitch_Left">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.021"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Left_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Pitch_Right">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.021"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Right_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Pitch_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Roll_Left">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.385"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Left_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Roll_Right">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.385"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Right_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Roll_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Yaw_Left">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="2.1659999"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Left_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Yaw_Right">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="2.1700001"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Right_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Hip_Yaw_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Shank_Left">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.73"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Left_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Left_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Shank_Right">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="1.79"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Right_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Shank_Right_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1">
+    <visual>
+      <origin xyz="0.0625 0. 0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H2_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0625 0. 0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Case_front.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Glass.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Case_back.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.112812 -0.03701 0.4084575" rpy="-3.0019662 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/USB_C.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Mount.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1233533 0.0113 0.4160645" rpy="1.43117 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Camera_module.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Front_mask.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.1351573 0. 0.4144056" rpy="1.7104226 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/camera_mask.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. -0.6583415" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/CollisionMesh.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0625 0. 0.30485" rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/H2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_Waist">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="2.5810001"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_Waist_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_Waist_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_Waist_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_left_Link1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0064772"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0000011 0.0000029 0.0000052" rpy="-0. -0. -0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link1_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.0000011 0.0000029 0.0000052" rpy="-0. -0. -0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0000011 0.0000029 0.0000052" rpy="-0. -0. -0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_left_Link11">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0127543"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0000039 -0.0000075 -0.0000088" rpy="-0. 0. -0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link11_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.0000039 -0.0000075 -0.0000088" rpy="-0. 0. -0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link11_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0000039 -0.0000075 -0.0000088" rpy="-0. 0. -0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link11_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0000039 -0.0000075 -0.0000088" rpy="-0. 0. -0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link11_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_left_Link2">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0064772"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0000011 0.000003 0.0000047" rpy="0. 0. -0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link2_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0000011 0.000003 0.0000047" rpy="0. 0. -0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0000011 0.000003 0.0000047" rpy="0. 0. -0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_left_Link22">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0127543"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0000038 0.0000069 -0.0000012" rpy="-0.000009 -0. -0.0000007"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link22_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0000038 0.0000069 -0.0000012" rpy="-0.000009 -0. -0.0000007"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link22_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0000038 0.0000069 -0.0000012" rpy="-0.000009 -0. -0.0000007"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link22_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.0000038 0.0000069 -0.0000012" rpy="-0.000009 -0. -0.0000007"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_Link22_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_left_base_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.1058536"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0.00001 0. " rpy="0.0008811 -0. 0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_base_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0.00001 0. " rpy="0.0008811 -0. 0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_base_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0.00001 0. " rpy="0.0008811 -0. 0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_left_base_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_right_Link1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0064772"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0000011 -0.000003 0.0000047" rpy="-0. 0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link1_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0000011 -0.000003 0.0000047" rpy="-0. 0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0000011 -0.000003 0.0000047" rpy="-0. 0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link1_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_right_Link11">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0127543"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0000038 0.0000075 -0.0000012" rpy="0. -0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link11_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.0000038 0.0000075 -0.0000012" rpy="0. -0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link11_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0000038 0.0000075 -0.0000012" rpy="0. -0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link11_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0000038 0.0000075 -0.0000012" rpy="0. -0. 0.0000001"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link11_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_right_Link2">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0064772"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.0000011 -0.0000029 0.0000052" rpy="0. -0. 0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link2_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.0000011 -0.0000029 0.0000052" rpy="0. -0. 0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.0000011 -0.0000029 0.0000052" rpy="0. -0. 0.0000002"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link2_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_right_Link22">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0127543"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0000039 -0.0000069 -0.0000088" rpy="-0. -0. -0.0000005"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link22_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0000039 -0.0000069 -0.0000088" rpy="-0. -0. -0.0000005"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link22_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0000039 -0.0000069 -0.0000088" rpy="-0. -0. -0.0000005"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link22_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.0000039 -0.0000069 -0.0000088" rpy="-0. -0. -0.0000005"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_Link22_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="T1_right_base_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.1058536"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0.00001 0. " rpy="-0.0008811 -0. -0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_base_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0.00001 0. " rpy="-0.0008811 -0. -0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_base_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0.00001 0. " rpy="-0.0008811 -0. -0.0000035"/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/T1_right_base_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Trunk">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="11.6999998"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.243 0. 0.0625" rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Trunk_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-0.243 0. 0.0625" rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Trunk_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.243 0. 0.0625" rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/Trunk_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_foot_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.685"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. -0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/left_foot_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. -0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/left_foot_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. -0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/left_foot_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_hand_link"/>
+  <link name="right_foot_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.685"/>
+      <inertia ixx="0.001" ixy="0." ixz="0." iyy="0.001" iyz="0." izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/right_foot_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/right_foot_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. -0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://t1_description/meshes/T1_obj/right_foot_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_hand_link"/>
+</robot>

@@ -1,0 +1,23 @@
+# merge_lerobot_datasets.py — Configuration
+# ---------------------------------------------------------------------------
+# storage_dir : folder containing all individual per-bag LeRobot datasets
+# output_dir  : where the merged dataset will be written
+#
+# task_filter.labels : list of primary task names to include.
+#   - Tasks are processed in the order listed (Wave 1,2,… then Salute 1,2,…).
+#   - A dataset is matched when its task_index=0 entry in tasks.jsonl equals
+#     one of these labels (case-sensitive).
+#   - If the primary task dominates (i.e. it is task_index 0), ALL frames from
+#     that episode are included — secondary labels like "Do nothing"/"Idle" are
+#     kept but remapped to the merged global task index.
+# ---------------------------------------------------------------------------
+
+storage_dir: "./lerobot_dataset_storage"
+output_dir:  "./merged_dataset"
+
+task_filter:
+  labels:
+    - "Wave"
+    # - "Salute"
+    # - "Shake hands"
+    # - "Place hands on head"

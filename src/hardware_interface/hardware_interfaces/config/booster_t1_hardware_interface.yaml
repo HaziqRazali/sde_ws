@@ -1,0 +1,178 @@
+
+# For robot joint control
+joint_mapping: {
+  'AAHead_yaw': 0,
+  'Head_pitch': 1,
+  'Left_Shoulder_Pitch': 2,
+  'Left_Shoulder_Roll': 3,
+  'Left_Elbow_Pitch': 4,
+  'Left_Elbow_Yaw': 5,
+  'Left_Wrist_Pitch': 6,
+  'Left_Wrist_Yaw': 7,
+  'Left_Hand_Roll': 8,
+  'Right_Shoulder_Pitch': 9,
+  'Right_Shoulder_Roll': 10,
+  'Right_Elbow_Pitch': 11,
+  'Right_Elbow_Yaw': 12,
+  'Right_Wrist_Pitch': 13,
+  'Right_Wrist_Yaw': 14,
+  'Right_Hand_Roll': 15,
+  'Waist_joint': 16,
+  'Left_Hip_Pitch': 17,
+  'Left_Hip_Roll': 18,
+  'Left_Hip_Yaw': 19,
+  'Left_Knee_Pitch': 20,
+  'Left_Ankle_Pitch': 21,
+  'Left_Ankle_Roll': 22,
+  'Right_Hip_Pitch': 23,
+  'Right_Hip_Roll': 24,
+  'Right_Hip_Yaw': 25,
+  'Right_Knee_Pitch': 26,
+  'Right_Ankle_Pitch': 27,
+  'Right_Ankle_Roll': 28
+}
+
+# For pose initialization
+start_configuration: [
+    -0.0, 0.0, 
+    -0.38222880210084487, -1.2963246176472716,
+    0.2636047653283989, -0.5669896132337005, 
+    -0.4074082089873005, -0.05507912409246853,
+    -0.09787296129607195, -0.38261117659935123, 
+    1.2965775931338805, 0.2626643999916205,
+    0.566245416609455, -0.40659248112759494, 
+    0.05508546217473252, 0.09865729221960956,
+    -0., -0., 
+    0.0, 0.0,
+    0.0, 0.0, 
+    0.0, 0.0,
+    0.0, 0.0, 
+    0.0, 0.0,
+    0.0
+  ]
+
+# For pose stopping
+end_configuration: [
+  -0.0, 0.9, 
+  -0.07839322835206985, -1.371374750137329,
+  0.05893797054886818, -0.06771191209554672, 
+  -0.0, 0.010109102353453636,
+  -0.02002716064453125, -0.07839322835206985, 
+  1.371374750137329, 0.13942931592464447,
+  0.06198977679014206, -0.01926422119140625, 
+  -0.01926422119140625, -0.00667582219466567,
+  -0., -0., 
+  0.0, 0.0,
+  0.0, 0.0, 
+  0.0, 0.0,
+  0.0, 0.0, 
+  0.0, 0.0,
+  0.0
+]
+
+joint_kps: [
+      5., 5.,
+      100., 100., 70., 70., 50., 70., 50.,
+      100., 100., 70., 70., 50., 70., 50.,
+      100., 
+      350., 350., 180., 350., 450., 450.,
+      350., 350., 180., 350., 450., 450.
+  ]
+
+joint_kds: [
+      .1, .1,
+      1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5,
+      1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5,
+      5.0,
+      7.5, 7.5, 3., 5.5, 0.5, 0.5,
+      7.5, 7.5, 3., 5.5, 0.5, 0.5
+  ]
+
+joint_limits:
+  AAHead_yaw:
+    min_position: -1.57
+    max_position: 1.57
+  Head_pitch:
+    min_position: -0.35
+    max_position: 1.22
+  Left_Shoulder_Pitch:
+    min_position: -3.31
+    max_position: 1.22
+  Left_Shoulder_Roll:
+    min_position: -1.74
+    max_position: 1.57
+  Left_Elbow_Pitch:
+    min_position: -2.27
+    max_position: 2.27
+  Left_Elbow_Yaw:
+    min_position: -2.27
+    max_position: 2.27
+  Left_Wrist_Pitch:
+    min_position: -2.27
+    max_position: 2.27
+  Left_Wrist_Yaw:
+    min_position: -2.27
+    max_position: 2.27
+  Left_Hand_Roll:
+    min_position: -2.27
+    max_position: 2.27
+  Right_Shoulder_Pitch:
+    min_position: -3.31
+    max_position: 1.22
+  Right_Shoulder_Roll:
+    min_position: -1.57
+    max_position: 1.74
+  Right_Elbow_Pitch:
+    min_position: -2.27
+    max_position: 2.27
+  Right_Elbow_Yaw:
+    min_position: -2.27
+    max_position: 2.27
+  Right_Wrist_Pitch:
+    min_position: -2.27
+    max_position: 2.27
+  Right_Wrist_Yaw:
+    min_position: -2.27
+    max_position: 2.27
+  Right_Hand_Roll:
+    min_position: -2.27
+    max_position: 2.27
+  Waist_joint:
+    min_position: -1.57
+    max_position: 1.57
+  Left_Hip_Pitch:
+    min_position: -1.8
+    max_position: 1.57
+  Left_Hip_Roll:
+    min_position: -0.3
+    max_position: 1.57
+  Left_Hip_Yaw:
+    min_position: -1.0
+    max_position: 1.0
+  Left_Knee_Pitch:
+    min_position: 0.0
+    max_position: 2.34
+  Left_Ankle_Pitch:
+    min_position: -0.87
+    max_position: 0.35
+  Left_Ankle_Roll:
+    min_position: -0.44
+    max_position: 0.44
+  Right_Hip_Pitch:
+    min_position: -1.8
+    max_position: 1.57
+  Right_Hip_Roll:
+    min_position: -1.57
+    max_position: 0.3
+  Right_Hip_Yaw:
+    min_position: -1.0
+    max_position: 1.0
+  Right_Knee_Pitch:
+    min_position: 0.0
+    max_position: 2.34
+  Right_Ankle_Pitch:
+    min_position: -0.87
+    max_position: 0.35
+  Right_Ankle_Roll:
+    min_position: -0.44
+    max_position: 0.44

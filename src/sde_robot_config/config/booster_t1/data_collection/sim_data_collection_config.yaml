@@ -1,0 +1,19 @@
+
+# bagfile name
+bagfile_name: "sim_booster_t1_bag"
+
+# ROS2 Topic list to record
+topics_to_collect:
+  - "/episode_index"
+  - "/task_label"
+  - "/is_done"
+  - "/ik/joint_states" # action
+  - "/sim/joint_states"
+  - "/sim/imu"
+  - "/sim/tf"
+  # - "/camera/camera/color/camera_info"
+  - "/sim/camera/color/image_raw"
+  # - "/camera/camera/depth/camera_info"
+  - "/sim/camera/depth/image_rect_raw"
+  - "/hand_states"
+

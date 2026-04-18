@@ -1,0 +1,245 @@
+# Do not load this file into ROS param server.
+# We will parse and extract the contents using yaml instead.    
+
+# Humanoid Robot IK Solver Configuration
+# This YAML file contains all configurable parameters for the robot dual-arm IK solver
+
+### this config file is written for Booster T1
+# Robot Model Configuration
+robot_model:
+  description_package_name: "t1_description"
+  urdf_path: "urdf/t1_with_7dof_arms_gripper.urdf"
+  
+  # End-effector configuration
+  end_effectors:
+    left:
+      hand_joint: "Left_Hand_Roll"
+      ee_frame_name: "L_ee"
+      ee_translation_offset: [0.00, 0.08, 0.00]  # [x, y, z] offset from hand joint
+      ee_rotation_offset: [
+          [0.0, -1.0, 0.0],
+          [1.0, 0.0, 0.0], 
+          [0.0,  0.0, 1.0]
+        ]
+
+    right:
+      hand_joint: "Right_Hand_Roll" 
+      ee_frame_name: "R_ee"
+      ee_translation_offset: [0.00, -0.08, 0.00]  # [x, y, z] offset from hand joint
+      ee_rotation_offset: [
+          [0.0, 1.0, 0.0],
+          [-1.0, 0.0, 0.0], 
+          [0.0, 0.0, 1.0]
+        ]
+
+  # Rotation offset for end-effector (identity matrix by default)
+  
+verbose: false
+
+# Joint Configuration
+joints:
+  # Reference configuration for initialization
+  reference_configuration: [
+    -0.0, 0.0, -0.38222880210084487, -1.2963246176472716,
+    0.2636047653283989, -0.5669896132337005, -0.4074082089873005, -0.05507912409246853,
+    -0.09787296129607195, 0., 0., 0.,
+    0., -0.38261117659935123, 1.2965775931338805, 0.2626643999916205,
+    0.566245416609455, -0.40659248112759494, 0.05508546217473252, 0.09865729221960956,
+    0., 0., 0., 0.,
+    -0., -0., 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0,
+    0.0
+  ]
+
+  # Reduced robot model reference configuration for initialization
+  reduced_reference_configuration: [
+    -0.38222880210084487,
+    -1.2963246176472716,
+    0.2636047653283989,
+    -0.5669896132337005,
+    -0.4074082089873005,
+    -0.05507912409246853,
+    -0.09787296129607195,
+    -0.38261117659935123,
+    1.2965775931338805,
+    0.2626643999916205,
+    0.566245416609455,
+    -0.40659248112759494,
+    0.05508546217473252,
+    0.09865729221960956
+  ]
+
+  # Joints to lock when creating the reduced arm-only model for ik solver
+  joints_to_lock:
+    - "AAHead_yaw"
+    - "Head_pitch"
+    - "Waist_joint"
+    - "Left_Hip_Pitch"
+    - "Left_Hip_Roll"
+    - "Left_Hip_Yaw"
+    - "Left_Knee_Pitch"
+    - "Left_Ankle_Pitch"
+    - "Left_Ankle_Roll"
+    - "Right_Hip_Pitch"
+    - "Right_Hip_Roll"
+    - "Right_Hip_Yaw"
+    - "Right_Knee_Pitch"
+    - "Right_Ankle_Pitch"
+    - "Right_Ankle_Roll"
+    - "T1_right_base_link_right_Link1"
+    - "T1_right_Link1_right_Link11"
+    - "T1_right_base_link_right_Link2"
+    - "T1_right_Link2_right_Link22"
+    - "T1_left_base_link_left_Link1"
+    - "T1_left_Link1_left_Link11"
+    - "T1_left_base_link_left_Link2"
+    - "T1_left_Link2_left_Link22"
+
+  # Head joints to control. Must contain keyword, yaw or pitch (If not controlling head, assign empty array [])
+    # Note if controlling head, make sure that ros2/topics/type_target_poses also contains 'head'
+  head_control_joints: 
+    - "AAHead_yaw"
+    - "Head_pitch"
+
+  # Regularization pose (natural/home position for arms)
+  # Order: [L_Shoulder_Pitch, L_Shoulder_Roll, L_Elbow_Pitch, L_Elbow_Yaw, 
+  #         L_Wrist_Pitch, L_Wrist_Yaw, L_Hand_Roll,
+  #         R_Shoulder_Pitch, R_Shoulder_Roll, R_Elbow_Pitch, R_Elbow_Yaw,
+  #         R_Wrist_Pitch, R_Wrist_Yaw, R_Hand_Roll]
+  regularization_q_offset: [     
+    -0.07839322835206985, # Left arm
+    -1.371374750137329, 0.05893797054886818, 
+    -0.06771191209554672, -0.0, 
+    0.010109102353453636, -0.02002716064453125, 
+    -0.07839322835206985, # Right arm
+    1.371374750137329, 0.13942931592464447,
+    0.06198977679014206, -0.01926422119140625, 
+    -0.01926422119140625, -0.00667582219466567,
+  ]
+
+# IK Optimization Parameters
+optimization:
+  # Cost function weights - these control the solver's behavior
+  weights:
+    translation: 50.0      # Weight for reaching target position
+    rotation: 1.0          # Weight for matching target orientation  
+    regularization: 0.02   # Weight for staying near home pose
+    smoothness: 25.0       # Weight for smooth motion (penalizes large changes)
+    collision: 1000        # Weight for robot link collision pairs
+
+  penalty:
+    wrist_yaw_joints_name:       # Wrist joint ids to identify to penalize
+      - "Left_Wrist_Yaw"
+      - "Right_Wrist_Yaw"
+    wrist_yaw: 5.0               # Extra penalty weight for wrist yaw to encourage natural poses
+    shoulder_roll_joints_name:   # Shoulder roll joint ids to identify to penalize
+      - "Left_Shoulder_Roll"
+      - "Right_Shoulder_Roll"
+    shoulder_roll: 0.0           # Extra penalty weight for shoulder roll to encourage natural poses
+  
+  # Solver configuration
+  solver:
+    type: "ipopt"
+    print_level: 0         # 0 = no output, higher values = more verbose
+    print_time: false
+    max_iterations: 100
+    tolerance: 1e-6
+
+# Solution Filtering
+filtering:
+  # Weighted moving average filter for solution smoothing
+  smoothing_weights: [0.4, 0.3, 0.2, 0.1]  # Most recent to oldest
+
+# Collision configurations for optimization
+collision:
+  link_safety_dist: 0.02  # 2 cm
+  link_collision_pairs: [  # links must have collision geometry defined with names, otherwise please add _0 to the back of the link name
+    # ["Trunk", "AL3"],   # adjacent joints do not need to define as restricted by joint limit
+    ### Using pin
+    ["Trunk_0", "AL4_0"],     # AL4 is left forearm
+    ["Trunk_0", "left_hand_link_0"],
+    ["Trunk_0", "AR4_0"],
+    ["Trunk_0", "right_hand_link_0"],
+    ["AL3_0", "left_hand_link_0"], # AL3 is left upper arm
+    ["AR3_0", "right_hand_link_0"],
+    ["AL4_0", "AR4_0"],
+    ["AL4_0", "right_hand_link_0"],
+    ["left_hand_link_0", "right_hand_link_0"],
+    ["H2_0", "AL4_0"],
+    ["H2_0", "left_hand_link_0"],
+    ["H2_0", "AR4_0"],
+    ["H2_0", "right_hand_link_0"]
+  ]
+
+# ROS 2 Configuration  
+ros2:
+  node_name: "t1_ik_solver_node"
+  
+  # Topics
+  topics:
+    joint_states: "/ik/joint_states2"      # topic to publish computed joint states # keep default as /ik/joint_states unless doing validation
+    target_poses: "/control_poses_target" # topic to subscribe to for end-effector pose
+    num_target_poses: 3
+    # Note if contains 'head', make sure that joints/head_control_joints is also populated 
+    type_target_poses: ['left_hand','right_hand','head'] # for developer to unpack (left hand and right hand will always exist)
+
+  # Publishing rate
+  publish_rate_hz: 50.0    # 50 Hz = 0.02s timer period
+  qos_depth: 10
+  
+  # TF Frames # these are now obsolete?
+  frames:
+    robot_root: "Trunk"
+    left_target: "left_hand_target"
+    right_target: "right_hand_target"
+    left_hand_fname: "left_hand_link"   # robot end_effector_link frame
+    right_hand_fname: "right_hand_link" # robot end_effector_link frame
+    ee_frame_listen_rate: 10
+
+  # Config for end effector interactive marker gui on rviz
+  ee_interactive_marker: 
+    marker_server_name: "hand_controls"
+    initial_poses:
+      left_ee: [0.3883, 0.2322, -0.1878, -0.7071068, 0.0, 0.0, 0.7071068]
+      right_ee: [0.3883, -0.2322, -0.1878, 0.7071068, 0.0, -0.0, 0.7071068]
+
+# Logging Configuration
+logging:
+  level: "INFO"            # DEBUG, INFO, WARN, ERROR
+  log_solver_failures: true
+  log_timing: false
+
+# Safety Limits (optional - can override URDF limits if needed)
+safety:
+  # Joint velocity limits (rad/s) - set to null to use URDF values
+  max_joint_velocities: null
+  
+  # Workspace limits for end-effectors (meters from robot base)
+  # workspace_limits:
+  #   x_min: -0.8
+  #   x_max: 0.8
+  #   y_min: -0.8  
+  #   y_max: 0.8
+  #   z_min: 0.0
+  #   z_max: 1.5
+  
+  # Maximum allowed joint angle change per iteration (rad)
+  max_joint_delta: 0.5
+
+# Advanced Parameters
+advanced:
+  # Whether to use analytical gradients (faster but more complex)
+  use_analytical_gradients: false
+  
+  # Warm start the solver with previous solution
+  warm_start: true
+  
+  # Maximum number of IK solver retries on failure
+  max_retries: 3
+  
+  # Use secondary objectives for redundancy resolution
+  use_secondary_objectives: true
+
+# Turn on debug to print "solver optimal cost", and end effector tf on runtime
+debug: false  

@@ -1,0 +1,10 @@
+numpy
+rosbags
+pyyaml
+scipy
+tqdm
+lerobot
+
+# Assuming robodm is installed from the local source provided previously.
+# If robodm is in a subdirectory, use: -e ./robodm
+# robodm

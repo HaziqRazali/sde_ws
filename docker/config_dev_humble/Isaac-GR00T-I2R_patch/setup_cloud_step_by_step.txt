@@ -1,0 +1,14 @@
+THESE INSTRUCTIONS ARE NOT YET POPULATED
+
+This instruction assumes you are using Docker container made by I2R: u22_gpu_humble_inference_sde:latest
+
+1. Ensure env variables are set by checking: 
+echo $FLASH_ATTN_CUDA_ARCHS
+echo $MAX_JOBS  # PLEASE SET THIS CAREFULLY!
+echo $FLASH_ATTN_CUDA_ARCHS
+
+2. Run the following: 
+uv pip install -e . --system
+
+3. You are done with the setup! You may run the training and inference, etc scripts. 
+

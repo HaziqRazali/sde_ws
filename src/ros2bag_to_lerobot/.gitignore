@@ -1,0 +1,32 @@
+# Python artifacts
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Conda/Virtual Envs
+env/
+venv/
+
+# Input Data (Don't push massive bags)
+yc_booster_bag/
+*.db3
+*.mcap
+
+# Output Data (Don't push generated datasets)
+robodm_output/
+*.vla
+*.vla.temp
+modality.json
+
+# System
+.DS_Store
+
+# bags
+bags/
+lerobot_dataset/
+archive_bags/
+lerobot_dataset_storage/
+merged_dataset/
+
+# repomix
+repomix*

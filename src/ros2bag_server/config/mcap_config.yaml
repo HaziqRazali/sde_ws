@@ -1,0 +1,3 @@
+chunkSize: 4194304
+compression: "Zstd"
+compressionLevel: "Fast"

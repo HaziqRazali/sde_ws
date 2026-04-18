@@ -1,0 +1,8 @@
+[submodule "sde/i2r_fork_televuer"]
+	path = src/motion_retargeting/televuer
+	url = https://gitlab.i2r.a-star.edu.sg/sean/sde/i2r_fork_televuer.git
+
+[submodule "booster_robotics_sdk"]
+	path = src/hardware_interface/booster/booster_robotics_sdk
+	url = https://gitlab.i2r.a-star.edu.sg/sean/sde/i2r_fork_booster_robotics_sdk.git
+

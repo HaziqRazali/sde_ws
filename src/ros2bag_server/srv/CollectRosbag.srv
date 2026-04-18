@@ -1,0 +1,5 @@
+string command   # "start", "stop", or "discard"
+int16 episode	 # episode number
+---
+bool success
+string message

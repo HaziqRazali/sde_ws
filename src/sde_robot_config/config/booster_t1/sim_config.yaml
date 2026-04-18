@@ -1,0 +1,201 @@
+# Do not load this file into ROS param server.
+# We will parse and extract the contents using yaml instead.   
+
+# Genesis World Simulation Configuration for Booster T1
+# This YAML file contains all configurable parameters for the Booster T1 robot in Genesis World Simulation
+
+# Simulation variables
+simulation: 
+  dt: 0.02 # 50 Hz
+
+verbose: true
+
+# Robot Model Configuration
+robot_model:
+  description_package_name: "t1_description"
+  urdf_path: "urdf/t1_with_7dof_arms_gripper.urdf"
+  render_cam_freq: 10.0
+  camera: {
+    head_rgb_camera: {
+      # resolution: [1280, 720], # (width, height) # [1280, 720] causes laggy simulation ~2.5 Hz. Use smaller i.e. [640, 360] for less lag.
+      resolution: [640, 360], # (width, height) # [1280, 720] causes laggy simulation ~2.5 Hz. Use smaller i.e. [640, 360] for less lag.
+      fov: 45, # depends on lens used and focal length
+      fps: 10, 
+      gui: false,
+      attached_link: "Camera_OmniVision_OV9782_Color",
+      displacement_from_link_centre: [0.0, 0.0, 0.0],
+      rot_from_link_centre: [90.0, 0.0, -90.0], # xyz in deg
+      rgb: true,
+      depth: false,
+      segmentation: false,
+      normal: false,
+      # to sync with ROS2Topics camera function below to enable publishing on ROS2, else no effect
+      ros2_interface_fn: "publish_rgb_camera" 
+    },
+    head_depth_camera: {
+      # resolution: [848, 480], # [848, 480] if same as depth topic
+      resolution: [640, 360], # [848, 480] if same as depth topic
+      fov: 45, # depends on lens used and focal length
+      fps: 10, 
+      gui: false,
+      attached_link: "Camera_Pseudo_Depth",
+      displacement_from_link_centre: [0.0, 0.0, 0.0],
+      rot_from_link_centre: [90.0, 0.0, -90.0], # xyz in deg
+      rgb: false,
+      depth: true,
+      segmentation: false,
+      normal: false,
+      ros2_interface_fn: "publish_depth_camera"
+    },
+  }
+  spawn_pos: [0.0, 0.0, 0.67]
+  links_to_keep: ["Camera_OmniVision_OV9782_Color","Camera_Pseudo_Depth"]
+  suspend_base_link: true
+  
+  imu:
+    parent: "Trunk"
+    pos_offset: [0.0, 0.0, 0.0]
+    accel_noise_density: 0.0
+    accel_random_walk: 0.0
+    accel_bias_correlation_time: 0.0
+    gyro_noise_density: 0.0
+    gyro_random_walk: 0.0
+    gyro_bias_correlation_time: 0.0
+
+  # Reference configuration at neutral position
+  reference_configuration: [
+    -0.0,
+    0.0,
+    -0.38222880210084487,
+    -1.2963246176472716,
+    0.2636047653283989,
+    -0.5669896132337005,
+    -0.4074082089873005,
+    -0.05507912409246853,
+    -0.09787296129607195,
+    0.,
+    0.,
+    0.,
+    0.,
+    -0.38261117659935123,
+    1.2965775931338805,
+    0.2626643999916205,
+    0.566245416609455,
+    -0.40659248112759494,
+    0.05508546217473252,
+    0.09865729221960956,
+    0.,
+    0.,
+    0.,
+    0.,
+    -0.,
+    -0.,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+
+  # Robot URDF joint names that can be to controlled
+  controllable_joint_names: [
+    "AAHead_yaw",
+    "Head_pitch",
+    "Left_Shoulder_Pitch",
+    "Left_Shoulder_Roll",
+    "Left_Elbow_Pitch",
+    "Left_Elbow_Yaw",
+    "Left_Wrist_Pitch",
+    "Left_Wrist_Yaw",
+    "Left_Hand_Roll",
+    "T1_left_base_link_left_Link1",
+    "T1_left_Link1_left_Link11",
+    "T1_left_base_link_left_Link2",
+    "T1_left_Link2_left_Link22",
+    "Right_Shoulder_Pitch",
+    "Right_Shoulder_Roll",
+    "Right_Elbow_Pitch",
+    "Right_Elbow_Yaw",
+    "Right_Wrist_Pitch",
+    "Right_Wrist_Yaw",
+    "Right_Hand_Roll",
+    "T1_right_base_link_right_Link1",
+    "T1_right_Link1_right_Link11",
+    "T1_right_base_link_right_Link2",
+    "T1_right_Link2_right_Link22",
+    "Waist_joint",
+    "Left_Hip_Pitch",
+    "Left_Hip_Roll",
+    "Left_Hip_Yaw",
+    "Left_Knee_Pitch",
+    "Left_Ankle_Pitch",
+    "Left_Ankle_Roll",
+    "Right_Hip_Pitch",
+    "Right_Hip_Roll",
+    "Right_Hip_Yaw",
+    "Right_Knee_Pitch",
+    "Right_Ankle_Pitch",
+    "Right_Ankle_Roll"
+  ]
+
+### Declare ROS2 Topics involved
+ROS2Topics: {
+  # Subscriber for the joints control input
+  joint_state_sub: {
+    type: "subscriber",
+    message_type: "JointState",
+    name: "/ik/joint_states",
+    qos_depth: 10,
+    type_callback_fn: "joint_states_callback"
+  },
+  ### Only 1 joint_state, 1 IMU, but multiple camera topics available to pub up to 4
+  joint_state_pub: {
+    type: "publisher",
+    message_type: "JointState",
+    name: "/sim/joint_states",
+    publish_frequency: 50,
+    qos_depth: 10
+  },
+  imu_pub: {
+    type: "publisher",
+    message_type: "Imu",
+    name: "/sim/imu",
+    publish_frequency: 100,
+    qos_depth: 10,
+    # if no data, set element 0 of corresponding covariance to -1
+    orientation_covariance: [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    angular_velocity_covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    linear_acceleration_covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  },
+  # for camera specs, add on metadata OR camera_info
+  # Double check that any two publisher topics timer_fn_name should never clash!!!
+  rgb_camera_pub: {
+    type: "publisher",
+    message_type: "Image",
+    name: "/sim/camera/color/image_raw",
+    publish_frequency: 10, # [1280, 720] publishes at ~4.5 Hz
+    qos_depth: 10,
+    height: 360, # [1280, 720] causes laggy simulation ~2.5 Hz, sim: [640, 480]
+    width: 640,
+    encoding: "rgb8",
+    timer_fn_name: "publish_rgb_camera"
+  },
+  depth_camera_pub: {
+    type: "publisher",
+    message_type: "Image",
+    name: "/sim/camera/depth/image_rect_raw",
+    publish_frequency: 10,
+    qos_depth: 10,
+    height: 360, # [848, 480], sim: [424, 240]
+    width: 640,
+    encoding: "16UC1",
+    timer_fn_name: "publish_depth_camera"
+  }
+}
+
