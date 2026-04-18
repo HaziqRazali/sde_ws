@@ -50,16 +50,31 @@ source /root/test/sde_ws/install/setup.bash
 ─────────────────────────────────────────────────────────────────────────────
 Git Workflow: Editing on Computer B (no VPN) via GitHub as middleman
 
+Remotes:
+  origin → https://gitlab.i2r.a-star.edu.sg/sean/sde/sde_ws.git  (VPN required)
+  github → https://github.com/HaziqRazali/sde_ws.git              (no VPN needed)
+
 Branches:
-  haziq-dev         → GitLab  (has large model files)
-  haziq-dev-github  → GitHub  (large files removed from history)
+  haziq-dev         → GitLab only  (has large model files, full history)
+  haziq-dev-github  → GitHub only  (no large files, orphan branch = no shared history with haziq-dev)
+
+Key concept - haziq-dev-github is an ORPHAN branch:
+  It has NO shared history with haziq-dev.
+  This means merging haziq-dev into it would bring large files back.
+  So instead of merging, we COPY files using: git checkout haziq-dev -- .
+  Then manually unstage the large files before committing.
 
 ── FIRST TIME on Computer B ─────────────────────────────────────────────────
 
 Computer A (with VPN):
-  git checkout haziq-dev-github        # switch to github branch
-  git merge haziq-dev                  # bring in latest changes from gitlab branch
-  git push github haziq-dev-github --force  # upload to GitHub
+  git checkout haziq-dev               # switch to gitlab branch
+  git checkout haziq-dev-github        # switch to github branch (orphan, no large files)
+  git checkout haziq-dev -- .          # copy all files from haziq-dev (does NOT bring history)
+  git rm --cached src/motion_retargeting/mhr_pose_estimation/models/ -r
+  git rm --cached docker/config_dev_humble/onnxruntime-linux-x64-gpu-1.15.1/lib/libonnxruntime_providers_cuda.so
+  git rm --cached docker/config_dev_jazzy/onnxruntime-linux-x64-gpu-1.15.1/lib/libonnxruntime_providers_cuda.so
+  git commit -m "sync from haziq-dev"
+  git push github haziq-dev-github     # upload to GitHub (no large files in history)
 
 Computer B:
   git clone https://github.com/HaziqRazali/sde_ws.git
@@ -68,21 +83,28 @@ Computer B:
   # ... do edits ...
   git add .
   git commit -m "your changes"
-  git push origin haziq-dev-github     # upload edits to GitHub
+  git push origin haziq-dev-github     # upload edits back to GitHub
 
 Computer A (back with VPN):
-  git checkout haziq-dev-github        # switch to github branch
+  git checkout haziq-dev-github
   git pull github haziq-dev-github     # download edits from Computer B
   git checkout haziq-dev               # switch to gitlab branch
-  git merge haziq-dev-github           # bring in edits
-  git push origin haziq-dev            # push to GitLab
+  git checkout haziq-dev-github -- .   # copy edited files into haziq-dev
+  git checkout haziq-dev-github -- .gitignore  # make sure .gitignore is also copied
+  git add .
+  git commit -m "sync edits from Computer B"
+  git push origin haziq-dev            # push to GitLab (large files still tracked here)
 
 ── SUBSEQUENT TIMES on Computer B ───────────────────────────────────────────
 
 Computer A (with VPN):
   git checkout haziq-dev-github
-  git merge haziq-dev
-  git push github haziq-dev-github --force
+  git checkout haziq-dev -- .          # copy latest files from gitlab branch
+  git rm --cached src/motion_retargeting/mhr_pose_estimation/models/ -r 2>/dev/null
+  git rm --cached docker/config_dev_humble/onnxruntime-linux-x64-gpu-1.15.1/lib/libonnxruntime_providers_cuda.so 2>/dev/null
+  git rm --cached docker/config_dev_jazzy/onnxruntime-linux-x64-gpu-1.15.1/lib/libonnxruntime_providers_cuda.so 2>/dev/null
+  git commit -m "sync from haziq-dev"
+  git push github haziq-dev-github
 
 Computer B:
   cd sde_ws
@@ -94,8 +116,10 @@ Computer B:
 
 Computer A (back with VPN):
   git checkout haziq-dev-github
-  git pull github haziq-dev-github
+  git pull github haziq-dev-github     # download edits from Computer B
   git checkout haziq-dev
-  git merge haziq-dev-github
-  git push origin haziq-dev
+  git checkout haziq-dev-github -- .   # copy edited files into haziq-dev
+  git add .
+  git commit -m "sync edits from Computer B"
+  git push origin haziq-dev            # push to GitLab
 COMMENT
